@@ -3,8 +3,12 @@ using System.Collections.Generic;
 
 public class Inventory
 {
-    public Map map;
-    public List<Collection> abilities = new List<Collection>();
-    public List<Collection> powerUps = new List<Collection>();
-    public Dictionary<string, int> deathEnemies = new Dictionary<string, int>();
+    public string name;
+    public List<Collection> objectsList;
+
+    public Inventory(string name, List<Collection> objectsList)
+    {
+        this.name = name;
+        this.objectsList = objectsList;
+    }
 }
