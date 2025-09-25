@@ -3,12 +3,28 @@ using System.Collections.Generic;
 
 public class Inventory
 {
-    public string name;
-    public List<Collection> objectsList;
+    private string name;
+    private List<Collection> objectsList;
 
     public Inventory(string name, List<Collection> objectsList)
     {
         this.name = name;
         this.objectsList = objectsList;
+    }
+
+    public string Name
+    {
+        get
+        {
+            return name;
+        }
+    }
+
+    public List<Collection> ObjectsList
+    {
+        get
+        {
+            return objectsList;
+        }
     }
 }

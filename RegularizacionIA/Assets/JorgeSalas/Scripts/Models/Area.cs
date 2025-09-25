@@ -4,6 +4,22 @@ public enum Enemies { Normal, Boss };
 
 public class Area
 {
-    public Enemies enemiesType;
-    public Stats characteristics;
+    private Enemies enemiesType;
+    private Stats characteristics;
+
+    public Enemies Enemies
+    {
+        get
+        {
+            return enemiesType;
+        }
+    }
+
+    public Stats Stats
+    {
+        get
+        {
+            return characteristics;
+        }
+    }
 }
