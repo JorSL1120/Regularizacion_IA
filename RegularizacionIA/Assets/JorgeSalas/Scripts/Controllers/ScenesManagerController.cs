@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 public class ScenesManagerController : MonoBehaviour
 {
-    public void SelectLevel()
+    public void SelectLevel(int levelToSelect)
     {
-        GameManagerController.Instance.ChangeScenes("Level");
+        GameManagerController.Instance.ChangeScenes(levelToSelect);
     }
 }

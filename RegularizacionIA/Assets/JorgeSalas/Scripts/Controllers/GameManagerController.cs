@@ -5,15 +5,32 @@ using System.Collections.Generic;
 public class GameManagerController : MonoBehaviour
 {
     public string scenesList;
-    public static GameManagerController Instance{ get; set; }
+    private static GameManagerController instance;
+    public static GameManagerController Instance 
+    { 
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindAnyObjectByType<GameManagerController>();
+                if (instance != null)
+                {
+                    return instance;
+                }
 
-    void Awake()
-    {
-        Instance = this;
+                GameObject go = new GameObject();
+                instance = go.AddComponent<GameManagerController>();
+                DontDestroyOnLoad(go);
+            }
+
+            return instance;
+
+        } 
     }
 
-    public void ChangeScenes(string scenesList)
+    public void ChangeScenes(int scenesList)
     {
         SceneManager.LoadScene(scenesList);
     }
+
 }
