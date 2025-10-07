@@ -19,4 +19,9 @@ public class PlayerController : MonoBehaviour
             player = new Player();
         }
     }
+
+    private void Update()
+    {
+        player.PlayerMovement();
+    }
 }
