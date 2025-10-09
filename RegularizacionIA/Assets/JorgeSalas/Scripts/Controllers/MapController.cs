@@ -17,13 +17,18 @@ public class MapController : MonoBehaviour
         grid.AddComponent<Grid>();
         Grid isometricGrid = grid.GetComponent<Grid>();
         isometricGrid.cellLayout = GridLayout.CellLayout.Rectangle;
-        isometricGrid.cellSize = new Vector3(1, 0.5f, 1);
+        isometricGrid.cellSize = new Vector3(1, 1, 1);
 
         GameObject tilemap = new GameObject();
         tilemap.name = "Tilemap";
 
         tilemap.AddComponent<Tilemap>();
         tilemap.AddComponent<TilemapRenderer>();
+        tilemap.AddComponent<TilemapCollider2D>();
+        tilemap.AddComponent<Rigidbody2D>();
+        Rigidbody2D rb = tilemap.GetComponent<Rigidbody2D>();
+        rb.bodyType = RigidbodyType2D.Static;
+        rb.simulated = true;
         TilemapRenderer tilemapRenderer = tilemap.GetComponent<TilemapRenderer>();
         tilemapRenderer.sortOrder = TilemapRenderer.SortOrder.TopRight;
 
@@ -33,9 +38,9 @@ public class MapController : MonoBehaviour
 
         GenerateArea1(map);
         GenerateArea2(map);
-        //GenerateArea3(map);
-        //GenerateArea4(map);
-        //GenerateArea5(map);
+        GenerateArea3(map);
+        GenerateArea4(map);
+        GenerateArea5(map);
     }
 
     private void GenerateArea1(Tilemap tilemap)
@@ -45,6 +50,8 @@ public class MapController : MonoBehaviour
         map.Render(coordenadas, tiles[0], tilemap);
         List<Vector3Int> coordenadasPlat = map.GeneratePlatforms();
         map.Render(coordenadasPlat, tiles[0], tilemap);
+        List<Vector3Int> coordenadasObstacles = map.GenerateObstacles();
+        map.Render(coordenadasObstacles, tiles[0], tilemap);
     }
 
     private void GenerateArea2(Tilemap tilemap)
@@ -54,15 +61,19 @@ public class MapController : MonoBehaviour
         map.Render(coordenadas, tiles[1], tilemap);
         List<Vector3Int> coordenadasPlat = map.GeneratePlatforms();
         map.Render(coordenadasPlat, tiles[1], tilemap);
+        List<Vector3Int> coordenadasObstacles = map.GenerateObstacles();
+        map.Render(coordenadasObstacles, tiles[1], tilemap);
     }
 
-    /*private void GenerateArea3(Tilemap tilemap)
+    private void GenerateArea3(Tilemap tilemap)
     {
         Map map = new Map("Area3", mapOrigin[2], mapSizes[2], tilemap, MapNum.Area3);
         List<Vector3Int> coordenadas = map.GenerateCoordinates();
         map.Render(coordenadas, tiles[2], tilemap);
         List<Vector3Int> coordenadasPlatforms = map.GeneratePlatforms();
         map.Render(coordenadasPlatforms, tiles[2], tilemap);
+        List<Vector3Int> coordenadasObstacles = map.GenerateObstacles();
+        map.Render(coordenadasObstacles, tiles[2], tilemap);
     }
 
     private void GenerateArea4(Tilemap tilemap)
@@ -72,6 +83,8 @@ public class MapController : MonoBehaviour
         map.Render(coordenadas, tiles[3], tilemap);
         List<Vector3Int> coordenadasPlatforms = map.GeneratePlatforms();
         map.Render(coordenadasPlatforms, tiles[3], tilemap);
+        List<Vector3Int> coordenadasObstacles = map.GenerateObstacles();
+        map.Render(coordenadasObstacles, tiles[3], tilemap);
     }
 
     private void GenerateArea5(Tilemap tilemap)
@@ -81,5 +94,7 @@ public class MapController : MonoBehaviour
         map.Render(coordenadas, tiles[4], tilemap);
         List<Vector3Int> coordenadasPlatforms = map.GeneratePlatforms();
         map.Render(coordenadasPlatforms, tiles[4], tilemap);
-    }*/
+        List<Vector3Int> coordenadasObstacles = map.GenerateObstacles();
+        map.Render(coordenadasObstacles, tiles[4], tilemap);
+    }
 }

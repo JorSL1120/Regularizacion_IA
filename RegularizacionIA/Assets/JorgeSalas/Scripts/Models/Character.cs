@@ -8,6 +8,12 @@ public class Character
     private float jumpHeight;
     private float cooldown;
 
+    public Character(float velocity, float jump)
+    {
+        velocityMovement = velocity;
+        jumpHeight = jump;
+    }
+    
     public int Health
     {
         get
